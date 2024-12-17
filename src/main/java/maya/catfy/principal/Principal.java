@@ -11,7 +11,7 @@ public class Principal {
 
         while (opcao!= 9) {
             var menu = """
-                    *** Screen Sound Músicas ***                    
+                    *** CatFy Músicas ***                    
                                         
                     1- Cadastrar artistas
                     2- Cadastrar músicas
