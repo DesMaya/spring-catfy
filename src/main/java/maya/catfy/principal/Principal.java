@@ -1,10 +1,19 @@
 package maya.catfy.principal;
 
+import maya.catfy.model.Artista;
+import maya.catfy.model.TipoArtista;
+import maya.catfy.repository.ArtistaRepository;
+
 import java.util.Scanner;
 
 public class Principal {
 
     private final Scanner sc = new Scanner(System.in);
+    private final ArtistaRepository repositorio;
+
+    public Principal(ArtistaRepository repositorio) {
+        this.repositorio = repositorio;
+    }
 
     public void exibeMenu() {
         var opcao = -1;
@@ -64,5 +73,21 @@ public class Principal {
     }
 
     private void cadastrarArtistas() {
+        var cadastrarNovo = "S";
+
+        while (cadastrarNovo.equalsIgnoreCase("S")) {
+            System.out.println("Informe o nome do Artista: ");
+            var nome = sc.nextLine();
+
+            System.out.println("Informe o tipo desse artista (solo, dupla ou banda): ");
+            var tipo = sc.nextLine();
+            TipoArtista tipoArtista = TipoArtista.valueOf(tipo.toUpperCase());
+
+            Artista artista = new Artista(nome, tipoArtista);
+            repositorio.save(artista);
+
+            System.out.println("Cadastrar novo artista? (S/N)");
+            cadastrarNovo = sc.nextLine();
+        }
     }
 }
