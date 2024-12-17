@@ -1,13 +1,20 @@
 package maya.catfy;
 
+import maya.catfy.principal.Principal;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CatfyApplication {
+public class CatfyApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CatfyApplication.class, args);
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		Principal principal = new Principal();
+		principal.exibeMenu();
+	}
 }
