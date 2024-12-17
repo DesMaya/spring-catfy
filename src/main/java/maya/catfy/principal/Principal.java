@@ -1,9 +1,13 @@
 package maya.catfy.principal;
 
 import maya.catfy.model.Artista;
+import maya.catfy.model.Musica;
 import maya.catfy.model.TipoArtista;
 import maya.catfy.repository.ArtistaRepository;
 
+import javax.swing.text.html.Option;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Principal {
@@ -63,14 +67,36 @@ public class Principal {
     private void pesquisarDadosDoArtista() {
     }
 
+
     private void buscarMusicasPorArtista() {
     }
 
+
     private void listarMusicas() {
+        List<Artista> artistas = repositorio.findAll();
+        artistas.forEach(System.out::println);
     }
 
+
     private void cadastrarMusicas() {
+        System.out.println("Cadastrar música de que artista? ");
+        var nome = sc.nextLine();
+        Optional<Artista> artista = repositorio.findByNomeContainingIgnoreCase(nome);
+
+        if (artista.isPresent()) {
+            System.out.println("Qual o nome da música: ");
+            var nomeMusica = sc.nextLine();
+            Musica musica = new Musica(nomeMusica);
+
+            musica.setArtista(artista.get());
+            artista.get().getMusicas().add(musica);
+
+            repositorio.save(artista.get());
+        } else {
+            System.out.println("Artista não encontrado!");
+        }
     }
+
 
     private void cadastrarArtistas() {
         var cadastrarNovo = "S";
