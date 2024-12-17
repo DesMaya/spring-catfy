@@ -5,7 +5,6 @@ import maya.catfy.model.Musica;
 import maya.catfy.model.TipoArtista;
 import maya.catfy.repository.ArtistaRepository;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
