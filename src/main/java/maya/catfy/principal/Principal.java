@@ -52,9 +52,6 @@ public class Principal {
                 case 4:
                     buscarMusicasPorArtista();
                     break;
-                case 5:
-                    pesquisarDadosDoArtista();
-                    break;
                 case 9:
                     System.out.println("Encerrando a aplicação!");
                     break;
@@ -64,17 +61,17 @@ public class Principal {
         }
     }
 
-    private void pesquisarDadosDoArtista() {
-    }
-
-
     private void buscarMusicasPorArtista() {
+        System.out.println("Buscar musicas de que artista?");
+        var nome = sc.nextLine();
+        List<Musica> musicas = repositorio.buscaMusicaPorArtista(nome);
+        musicas.forEach(System.out::println);
     }
 
 
     private void listarMusicas() {
         List<Artista> artistas = repositorio.findAll();
-        artistas.forEach(System.out::println);
+        artistas.forEach(a -> a.getMusicas().forEach(System.out::println));
     }
 
 
