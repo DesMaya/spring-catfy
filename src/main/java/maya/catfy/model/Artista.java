@@ -1,7 +1,5 @@
 package maya.catfy.model;
 
-import maya.catfy.model.Musica;
-
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
